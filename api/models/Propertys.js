@@ -1,4 +1,5 @@
 const S = require("sequelize");
+const db = require("../config/db.js");
 
 class Property extends S.Model {}
 
@@ -39,8 +40,7 @@ Property.init(
       type: S.INTEGER
     },
     image: {
-      type: S.TEXT,
-      allowNull: false
+      type: S.STRING,
     },
   },
   {
@@ -49,4 +49,4 @@ Property.init(
   }
 );
 
-module.export = Property
+module.exports = Property

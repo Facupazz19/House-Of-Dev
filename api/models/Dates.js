@@ -16,4 +16,4 @@ Date.init(
   }
 );
 
-module.export = Date
+module.exports = Date

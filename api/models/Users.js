@@ -1,6 +1,17 @@
 const S = require("sequelize");
-const db = require("../db")
-class User extends S.Model {}
+const db = require("../config/db");
+const bcrypt = require("bcrypt");
+
+class User extends S.Model {
+  hash(password, salt) {
+    return bcrypt.hash(password, salt);
+  }
+  validatePassword(password) {
+    return bcrypt
+      .hash(password, this.salt)
+      .then((hash) => hash === this.password);
+  }
+}
 
 User.init(
   {
@@ -40,15 +51,16 @@ User.init(
       type: S.INTEGER,
       allowNull: false,
       validate: {
-        isNumeric: true
-      }
+        isNumeric: true,
+      },
     },
     admin: {
       type: S.BOOLEAN,
+      defaultValue: false
     },
-/*     salt: {
-      type: S.TEXT,
-    }, */
+    salt: {
+      type: S.STRING,
+    },
   },
   {
     sequelize: db,
@@ -56,4 +68,14 @@ User.init(
   }
 );
 
-module.export = User
+User.beforeCreate((user) => {
+  const salt = bcrypt.genSaltSync(8);
+  user.salt = salt;
+
+  return user.hash(user.password, user.salt).then((hash) => {
+    user.password = hash;
+  });
+});
+
+module.exports = User;
+
