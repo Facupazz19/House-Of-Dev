@@ -12,7 +12,7 @@ route.post("/register", (req, res) => {
 });
 
 route.post("/login", (req, res) => {
-  const { email, password } = req.body;
+  const { email, password,admin } = req.body;
 
   User.findOne({
     where: { email },
@@ -24,6 +24,7 @@ route.post("/login", (req, res) => {
         email: user.email,
         name: user.name,
         lastName: user.lastName,
+        admin: user.admin
       };
       const token = generateToken(payload);
       res.cookie("token", token);

@@ -2,9 +2,9 @@ import React from "react";
 import "../styles/NavBar.css";
 import logo from "../images/logo.png";
 import { Link } from "react-router-dom";
-
 const NavBar = () => {
   return (
+    <div className="flex-container">
     <nav class="navbar bg-light- fondoNavBar">
       <div class="container">
         <a class="navbar-brand">
@@ -38,6 +38,7 @@ const NavBar = () => {
         </ul>
       </div>
     </nav>
+    </div>
   );
 };
 

@@ -1,6 +1,7 @@
 import { React, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "../styles/Login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -28,7 +29,7 @@ const Login = () => {
   };
 
   return (
-    <div class="flex-container">
+    <div>
       <h1>Iniciar sesion</h1>
       <form onSubmit={handleSubmit}>
         <li>
