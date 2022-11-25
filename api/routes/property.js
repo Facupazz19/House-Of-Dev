@@ -3,6 +3,13 @@ const route = express.Router();
 const Property = require("../models/Propertys");
 const {validateAdmin} = require("../middlewares/auth")
 
+
+route.get('/', (req, res) => {
+  Property.findAll().then((property) => {
+    res.status(200).send(property);
+  });
+});
+
 route.post('/create', validateAdmin, (req, res) => {
   Property.create(req.body).then((property) => {
     res.status(201).send(property);

@@ -64,7 +64,7 @@ const Register = () => {
   };
 
   return (
-    <div class="flex-container">
+    <div className="flex-container">
       <div>
         <h1>Registrate para poder iniciar sesion</h1>
         <form onSubmit={handleSubmit}>

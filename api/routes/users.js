@@ -5,6 +5,8 @@ const User = require("../models/Users");
 const { validateAuth} = require('../middlewares/auth');
 
 
+
+
 route.post("/register", (req, res) => {
   User.create(req.body).then((user) => {
     res.status(201).send(user);
@@ -33,6 +35,10 @@ route.post("/login", (req, res) => {
   });
 });
 
+route.get("/secret", validateAuth, (req, res) => {
+  res.send(req.user);
+});
+
 route.get('/me',validateAuth, (req, res) => {
   res.send(req.user);
 });
@@ -41,6 +47,7 @@ route.post('/logout', (req, res) => {
   res.clearCookie('token');
   res.sendStatus(204);
 });
+
 
 
 

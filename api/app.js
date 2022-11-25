@@ -9,7 +9,7 @@ const cookieParser = require('cookie-parser')
 const cors = require("cors")
 
 app.use(express.json());
-app.use(cors())
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }))
 app.use(morgan("tiny"));
 app.use(cookieParser())
 app.use("/api",routes)
