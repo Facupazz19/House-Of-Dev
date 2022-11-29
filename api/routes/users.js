@@ -5,7 +5,12 @@ const User = require("../models/Users");
 const { validateAuth} = require('../middlewares/auth');
 
 
-
+route.get("/:id", (req, res) => {
+  const id = req.params.id
+  User.findOne({where : {id}}).then((user) => {
+    res.status(200).send(user);
+  });
+});
 
 route.post("/register", (req, res) => {
   User.create(req.body).then((user) => {

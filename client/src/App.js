@@ -6,7 +6,11 @@ import NavBar from "./components/NavBar/NavBar"
 import Profile from "./components/Profile/Profile";
 import Home from "./components/Home/Home"
 import Property from "./components/Propertys/PropertyCreate";
-import  AllPropertys  from "./components/Propertys/AllPropertys";
+import AllPropertys  from "./components/Propertys/AllPropertys";
+import Card from "./components/Propertys/Card";
+import ChangeProperty from "./components/Propertys/ChangeProperty";
+
+
 const App = () => {
   return (
     <>
@@ -18,7 +22,8 @@ const App = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/property/create" element={<Property />} />
         <Route path="/" element={<AllPropertys />} />
-        <Route path="/property/change/:id" element={<AllPropertys />} />
+        <Route path="/property/change/:id" element={<ChangeProperty />} />
+        <Route path="/property/:id" element={<Card />} />
       </Routes>
     </>
   );

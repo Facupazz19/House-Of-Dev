@@ -70,7 +70,7 @@ const Register = () => {
         <form onSubmit={handleSubmit}>
           <ul>
             <li>
-              <label>Nombre:</label>
+              <label>Name:</label>
               <input
                 type="text"
                 value={name}
@@ -79,7 +79,7 @@ const Register = () => {
               />
             </li>
             <li>
-              <label>Apellido:</label>
+              <label>LastName:</label>
               <input
                 type="text"
                 id="mail"
@@ -89,7 +89,7 @@ const Register = () => {
               />
             </li>
             <li>
-              <label>Correo Electronico:</label>
+              <label>Email:</label>
               <input
                 id="email"
                 type="text"
@@ -99,7 +99,7 @@ const Register = () => {
               />
             </li>
             <li>
-              <label>Contraseña:</label>
+              <label>Password:</label>
               <input
                 type="password"
                 id="password"
@@ -109,7 +109,7 @@ const Register = () => {
               />
             </li>
             <li>
-              <label>Ciudad:</label>
+              <label>City:</label>
               <input
                 type="text"
                 id="city"
@@ -119,7 +119,7 @@ const Register = () => {
               />
             </li>
             <li>
-              <label>Pais:</label>
+              <label>Country:</label>
               <input
                 type="text"
                 id="country"
@@ -129,7 +129,7 @@ const Register = () => {
               />
             </li>
             <li>
-              <label>Provincia:</label>
+              <label>State:</label>
               <input
                 type="text"
                 id="state"
@@ -139,7 +139,7 @@ const Register = () => {
               />
             </li>
             <li>
-              <label>Telefono:</label>
+              <label>Phone:</label>
               <input
                 type="tel"
                 id="phone"

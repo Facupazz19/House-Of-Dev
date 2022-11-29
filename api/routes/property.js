@@ -4,11 +4,22 @@ const Property = require("../models/Propertys");
 const {validateAdmin} = require("../middlewares/auth")
 
 
+
+
 route.get('/', (req, res) => {
   Property.findAll().then((property) => {
     res.status(200).send(property);
   });
 });
+
+route.get('/:id', (req, res) => {
+  const id = req.params.id
+  Property.findOne({where : {id}}).then((property) => {
+    res.status(200).send(property);
+  });
+});
+
+
 
 route.post('/create', validateAdmin, (req, res) => {
   Property.create(req.body).then((property) => {

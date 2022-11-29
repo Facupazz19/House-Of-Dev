@@ -12,26 +12,26 @@ const NavBar = () => {
           </a>
           <ul className="nav justify-content-end">
             <li className="nav-item">
-              <a className="nav-link buttons">En Venta</a>
+              <a className="nav-link buttons">On sale</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link buttons">Alquiler</a>
+              <a className="nav-link buttons">Rental</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link buttons">Agenda Tu Visita</a>
+              <a className="nav-link buttons">Date</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link buttons">Nuestros Servicios</a>
+              <a className="nav-link buttons">Services</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link buttons">Mi Perfil</a>
+              <a className="nav-link buttons">My profile</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link buttons">Nosotros</a>
+              <a className="nav-link buttons">About us</a>
             </li>
             <li>
               <a className="nav-link active buttons" aria-current="page">
-                Contacto
+                Contact
               </a>
             </li>
           </ul>

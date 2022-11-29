@@ -17,3 +17,8 @@ Stack de tecnologías involucradas en el backend:
 -Sequelize
 -Postgres
 -Bcrypt
+
+Stack de tecnologías involucradas en el Frontend:
+-React
+-Redux
+-

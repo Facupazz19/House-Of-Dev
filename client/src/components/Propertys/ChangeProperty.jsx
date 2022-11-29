@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const ChangeProperty = () => {
   const [title, setTitle] = useState("");
@@ -14,37 +14,30 @@ const ChangeProperty = () => {
   const [price, setPrice] = useState("");
   const [city, setCity] = useState("");
   const [image, setImage] = useState("");
-  const navigate = useNavigate();
+  const [property, setProperty] = useState({});
+  const { id } = useParams();
+  const ID = Number(id);
 
   const handleSubmit = (e) => {
-    useEffect(
-      () => {
-        axios
-          .get("http://localhost:3001/api/property/change/:id")
-          .then((res) => setProperty(res.data));
-      },
-      {
-        title: title,
-        category: category,
-        state: state,
-        country: country,
-        description: description,
-        environments: environments,
-        price: price,
-        city: city,
-        available: available,
-        image: image,
-      },
-      { withCredentials: true },
-      []
-    );
-
     e.preventDefault();
     axios
-      .post("http://localhost:3001/api/property/change/:id")
-      .then((res) => res.data)
-      .then(() => navigate("/home"))
-      .catch((error) => console.log(error));
+      .put(
+        `http://localhost:3001/api/property/change/${ID}`,
+        {
+          title: title,
+          category: category,
+          state: state,
+          country: country,
+          description: description,
+          environments: environments,
+          price: price,
+          city: city,
+          available: available,
+          image: image,
+        },
+        { withCredentials: true }
+      )
+      .then((res) => setProperty(res.data));
   };
 
   const handleChangeTitle = (e) => {

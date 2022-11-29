@@ -6,11 +6,11 @@ const Home = () => {
 
   return (
     <div className="container home">
-      <h1>Bienvenido a HouseOfDev!</h1>
+      <h1>Welcome to HouseOfDev!</h1>
       <div className="buttons">
         <button><Link to="/property/create">Agregar Nueva Propiedad</Link></button>
-        <button><Link to="/property/change/:id">Editar Una Propiedad</Link></button>
-        <button>Eliminar Una Propiedad</button>
+        <button><Link to="/property/change/">Editar Una Propiedad</Link></button>
+        <button>Delete Property</button>
       </div>
     </div>
   );

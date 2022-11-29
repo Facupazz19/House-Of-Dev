@@ -33,10 +33,10 @@ const Login = () => {
 
   return (
     <div>
-      <h1>Iniciar sesion</h1>
+      <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <li>
-          <label>Correo Electronico:</label>
+          <label>Email:</label>
           <input
             id="email"
             type="text"
@@ -46,7 +46,7 @@ const Login = () => {
           />
         </li>
         <li>
-          <label>Contraseña:</label>
+          <label>Password:</label>
           <input
             type="password"
             id="password"
@@ -67,7 +67,7 @@ const Login = () => {
           variant="text"
           size="medium"
         >
-          iniciar sesion
+          Login
         </button>
       </form>
     </div>
