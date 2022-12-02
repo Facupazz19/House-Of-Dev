@@ -5,13 +5,14 @@ import Login from "./components/Login/Login";
 import NavBar from "./components/NavBar/NavBar"
 import Profile from "./components/Profile/Profile";
 import Home from "./components/Home/Home"
-import Property from "./components/Propertys/PropertyCreate";
-import AllPropertys  from "./components/Propertys/AllPropertys";
-import Card from "./components/Propertys/Card";
+import PropertyCreate from "./components/Propertys/PropertyCreate";
+import Property from "./components/Propertys/Property";
 import ChangeProperty from "./components/Propertys/ChangeProperty";
-
+import DeleteProperty from "./components/Propertys/DeleteProperty";
+import Users from "./components/ViewAdmin/Users";
 
 const App = () => {
+
   return (
     <>
     <NavBar />
@@ -19,11 +20,12 @@ const App = () => {
       <Route path="/home" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile/:id" element={<Profile />} />
         <Route path="/property/create" element={<Property />} />
-        <Route path="/" element={<AllPropertys />} />
         <Route path="/property/change/:id" element={<ChangeProperty />} />
-        <Route path="/property/:id" element={<Card />} />
+        <Route path="/property/:id" element={<Property />} />
+        <Route path="/property/delete/:id" element={<DeleteProperty />} />
+        <Route path="/users" element={<Users/>} />
       </Routes>
     </>
   );

@@ -118,7 +118,7 @@ const ChangeProperty = () => {
             Image
             <input type="text" onChange={handleChangeImage} />
           </label>
-          <button>Crear</button>
+          <button>Editar</button>
         </form>
       </div>
     </div>

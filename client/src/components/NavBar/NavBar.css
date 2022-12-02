@@ -1,10 +1,35 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap');
 
-.fondoNavBar {
-  background-color: #fe4236;
+
+.card-navBar {
+  margin-left: 1.5rem;
+  width: 60% ;
 }
-.buttons {
+
+.user-name {
+  margin-right: 0.5rem;
+  text-decoration: none;
+  font-size: 16px;
+  border: 2px #cb4444 solid;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+  color: rgb(35, 33, 33);
+  text-align: center;
+}
+
+.user-name:hover {
+  color: black;
+  background-color: #f0382b;
+}
+
+.fondoNavBar {
+  display: flex;
+  background-color: #fe4236;
+  padding: 0;
+  padding-bottom: 0.5rem;
+}
+.buttonsNav {
   font-family: 'Montserrat';
   font-size: 14px;
   font-weight: 400;
@@ -13,7 +38,11 @@
   letter-spacing: 0em;
   text-align: left;
   color: #f7f3ee;
+  margin-top: 0.5rem;
+ 
 }
-.buttons:hover {
-  color: #ede6db
+
+.buttonLogout{
+  border: 2px #fe4236 solid;
+  background-color: #fe4236 ;
 }

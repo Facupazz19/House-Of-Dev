@@ -1,0 +1,10 @@
+.deletedUser a {
+    background-color: #f0382b;
+    text-decoration: none !important;
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+    border: 2px #f0382b solid;
+}
+.nameMayus{
+    text-transform: uppercase;
+}

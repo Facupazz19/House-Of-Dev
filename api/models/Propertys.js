@@ -18,7 +18,7 @@ Property.init(
       allowNull: false,
     },
     price: {
-      type: S.INTEGER,
+      type: S.BIGINT,
       allowNull: false,
     },
     city: {
@@ -37,7 +37,7 @@ Property.init(
       type: S.BOOLEAN,
     },
     environments: {
-      type: S.INTEGER
+      type: S.BIGINT
     },
     image: {
       type: S.STRING,

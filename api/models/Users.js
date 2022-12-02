@@ -48,7 +48,7 @@ User.init(
       allowNull: false,
     },
     phone: {
-      type: S.INTEGER,
+      type: S.BIGINT,
       allowNull: false,
       validate: {
         isNumeric: true,

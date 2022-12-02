@@ -12,14 +12,17 @@ const Profile = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/api/users/${id}`)
-      .then((res) => dispatch(setUser(res.data)));
+      .get(`http://localhost:3001/api/users/${id}`,{ withCredentials: true })
+      .then((res) => dispatch(setUser(res.data)))
+      .catch(error => console.log(error))
   }, []);
+
+  
 
   return (
 
     <div>
-      {user.admin === true ? <h1>ERES ADMIN</h1> : <h1>NO ERES ADMIN RAJA DE ACA POBRE</h1>}
+      <h1>hola</h1>
     </div>
 
   );
