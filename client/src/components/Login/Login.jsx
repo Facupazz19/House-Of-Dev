@@ -1,5 +1,6 @@
 import { React, useState } from "react";
 import axios from "axios";
+import "../Login/Login.css"
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../store/user";
@@ -36,7 +37,8 @@ const Login = () => {
   };
 
   return (
-    <form className="px-4 py-3" onClick={handleSubmit}>
+
+    <form className="px-4 py-3 container loginContainer " onClick={handleSubmit}>
       <div className="mb-3">
         <label className="form-label">Email</label>
         <input
@@ -77,6 +79,7 @@ const Login = () => {
         Forgot password?
       </a>
     </form>
+
   );
 };
 

@@ -1,0 +1,18 @@
+.loginContainer {
+  width: 25%;
+  height: 400px;
+  padding-top: 10%;
+  background-color: #fbefef;
+  -webkit-border-top-left-radius: 40px;
+  -webkit-border-top-right-radius: 2px;
+  -webkit-border-bottom-right-radius: 56px;
+  -webkit-border-bottom-left-radius: 2px;
+  -moz-border-radius-topleft: 40px;
+  -moz-border-radius-topright: 2px;
+  -moz-border-radius-bottomright: 56px;
+  -moz-border-radius-bottomleft: 2px;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 56px;
+  border-bottom-left-radius: 2px;
+}

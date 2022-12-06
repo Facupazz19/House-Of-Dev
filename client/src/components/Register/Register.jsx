@@ -1,6 +1,7 @@
 import { React, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "../Register/register.css";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -64,108 +65,110 @@ const Register = () => {
   };
 
   return (
-    <div className="flex-container">
-      <div>
-        <h1>Registrate para poder iniciar sesion</h1>
-        <form onSubmit={handleSubmit}>
-          <ul>
-            <li>
-              <label>Name:</label>
-              <input
-                type="text"
-                value={name}
-                required
-                onChange={handleChangeName}
-              />
-            </li>
-            <li>
-              <label>LastName:</label>
-              <input
-                type="text"
-                id="mail"
-                value={lastName}
-                required
-                onChange={handleChangeLastName}
-              />
-            </li>
-            <li>
-              <label>Email:</label>
-              <input
-                id="email"
-                type="text"
-                email={email}
-                required
-                onChange={handleChangeEmail}
-              />
-            </li>
-            <li>
-              <label>Password:</label>
-              <input
-                type="password"
-                id="password"
-                password={password}
-                required
-                onChange={handleChangePassword}
-              />
-            </li>
-            <li>
-              <label>City:</label>
-              <input
-                type="text"
-                id="city"
-                city={city}
-                required
-                onChange={handleChangeCity}
-              />
-            </li>
-            <li>
-              <label>Country:</label>
-              <input
-                type="text"
-                id="country"
-                country={country}
-                required
-                onChange={handleChangeCountry}
-              />
-            </li>
-            <li>
-              <label>State:</label>
-              <input
-                type="text"
-                id="state"
-                state={state}
-                required
-                onChange={handleChangeState}
-              />
-            </li>
-            <li>
-              <label>Phone:</label>
-              <input
-                type="tel"
-                id="phone"
-                phone={phone}
-                required
-                onChange={handleChangePhone}
-              />
-            </li>
-            <button
-              style={{
-                color: "black",
-                borderColor: "black",
-                fontFamily: "Roboto",
-                fontWeight: "bold",
-                borderRadius: "200px",
-              }}
-              type="submit"
-              variant="text"
-              size="medium"
-            >
-              Register
-            </button>
-          </ul>
-        </form>
+    <form className="container row g-3 containerReg" onClick={handleSubmit}>
+      <label className="form-label">
+        LastName
+      </label>
+      <input
+        type="text"
+        className="form-control"
+        id="inputLastName"
+        placeholder="Aguirre"
+        required
+        onChange={handleChangeLastName}
+      />
+
+      <label className="form-label">
+        Name
+      </label>
+      <input
+        type="tel"
+        className="form-control"
+        id="inputName"
+        placeholder="Fabian"
+        required
+        onChange={handleChangeName}
+      />
+
+      <div className="col-md-6">
+        <label className="form-label">
+          Email
+        </label>
+        <input
+          onChange={handleChangeEmail}
+          type="email"
+          className="form-control"
+          placeholder="example@example.com"
+        />
       </div>
-    </div>
+      <div className="col-md-6">
+        <label  className="form-label">
+          Password
+        </label>
+        <input
+          onChange={handleChangePassword}
+          type="password"
+          className="form-control"
+          id="inputPassword4"
+          placeholder="Password"
+        />
+      </div>
+      <div className="col-12">
+        <label className="form-label">
+          Phone
+        </label>
+        <input
+          type="text"
+          className="form-control"
+          id="inputAddress"
+          placeholder="362434532"
+          required
+          onChange={handleChangePhone}
+        />
+      </div>
+      <div className="col-12">
+        <label className="form-label">
+          Country
+        </label>
+        <input
+          onChange={handleChangeCountry}
+          type="text"
+          className="form-control"
+          id="inputCountry"
+          placeholder="Argentina"
+        />
+      </div>
+      <div className="col-md-6">
+        <label className="form-label">
+          City
+        </label>
+        <input
+          onChange={handleChangeCity}
+          type="text"
+          className="form-control"
+          id="inputCity"
+          placeholder="Resistencia"
+        />
+      </div>
+      <div className="col-md-4">
+        <label className="form-label">
+          State
+        </label>
+        <input
+          onChange={handleChangeState}
+          type="text"
+          className="form-control"
+          id="inputState"
+          placeholder="Buenos Aires"
+        />
+      </div>
+      <div className="col-12"></div>
+      <div className="col-12">
+        <button type="submit" className="btn btn-primary">
+          Sign in
+        </button>
+      </div>
+    </form>
   );
 };
 

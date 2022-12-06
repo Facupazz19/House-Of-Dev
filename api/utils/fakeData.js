@@ -12,7 +12,7 @@ const fakeData = [
     available: true,
     environments: 2,
     category: "departamento",
-    price: "300",
+    price: "3009",
     image:
       "https://static.inmofactory.com/images/inmofactory/documents/1/128286/32684598/535284921.jpg?rule=web_948x542",
   },
@@ -40,7 +40,7 @@ const fakeData = [
     available: true,
     environments: 3,
     category: "departamento",
-    price: "120000",
+    price: "1200",
     image:
       "https://static.inmofactory.com/images/inmofactory/documents/1/102490/29556180/444717742.jpg?rule=web_948x542",
   },
@@ -53,7 +53,7 @@ const fakeData = [
     available: true,
     environments: 2,
     category: "ph",
-    price: "250",
+    price: "2509",
     image:
       "https://www.mapropiedades.com.ar/resources/original/propiedades/7899449/countrygolf-205_small.jpg",
   },
@@ -67,7 +67,7 @@ const fakeData = [
     available: true,
     environments: 3,
     category: "departamento",
-    price: "120000",
+    price: "12009",
     image:
       "https://ingenieriacivilyarquitectura.com/wp-content/uploads/2022/04/ideas-de-casas-pequenas-pero-bonitas-1.jpg",
   },
@@ -80,7 +80,7 @@ const fakeData = [
     available: true,
     environments: 3,
     category: "departamento",
-    price: "120000",
+    price: "1209",
     image:
       "https://ingenieriacivilyarquitectura.com/wp-content/uploads/2022/04/ideas-de-casas-pequenas-pero-bonitas-1.jpg",
   },
@@ -93,7 +93,7 @@ const fakeData = [
     available: true,
     environments: 3,
     category: "departamento",
-    price: "120000",
+    price: "12007",
     image:
       "https://ingenieriacivilyarquitectura.com/wp-content/uploads/2022/04/ideas-de-casas-pequenas-pero-bonitas-1.jpg",
   },
