@@ -1,0 +1,17 @@
+.imageCard {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+.cardPadding {
+  margin: 0.5rem;
+}
+.centerContent {
+  display: flex;
+  flex-wrap: wrap;
+}
+.oneProperty{
+  width: 70%;
+  height: 70%;
+  
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ChangeProperty = () => {
   const [title, setTitle] = useState("");
@@ -17,6 +17,7 @@ const ChangeProperty = () => {
   const [property, setProperty] = useState({});
   const { id } = useParams();
   const ID = Number(id);
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,7 +38,8 @@ const ChangeProperty = () => {
         },
         { withCredentials: true }
       )
-      .then((res) => setProperty(res.data));
+      .then((res) => setProperty(res.data))
+      .then(() => navigate("/home"))
   };
 
   const handleChangeTitle = (e) => {

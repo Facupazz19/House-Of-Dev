@@ -10,6 +10,8 @@ import Property from "./components/Propertys/Property";
 import ChangeProperty from "./components/Propertys/ChangeProperty";
 import DeleteProperty from "./components/Propertys/DeleteProperty";
 import Users from "./components/ViewAdmin/Users";
+import DeleteUser from "./components/ViewAdmin/DeleteUser";
+import Search from "./components/Propertys/Search";
 
 const App = () => {
 
@@ -21,11 +23,13 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile/:id" element={<Profile />} />
-        <Route path="/property/create" element={<Property />} />
+        <Route path="/property/create" element={<PropertyCreate />} />
         <Route path="/property/change/:id" element={<ChangeProperty />} />
         <Route path="/property/:id" element={<Property />} />
         <Route path="/property/delete/:id" element={<DeleteProperty />} />
         <Route path="/users" element={<Users/>} />
+        <Route path="/delete/:id" element={<DeleteUser/>} />
+        <Route path="/search/:category" element={<Search/>} />
       </Routes>
     </>
   );

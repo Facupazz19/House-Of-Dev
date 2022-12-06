@@ -42,6 +42,32 @@
  
 }
 
+.searchNav {
+  margin-top: 0.5rem;
+  margin-right: 5% ;
+}
+.inputNav{
+  height: 30px;
+}
+.buttonSearchNav{
+  height: 29px;
+  background-color: #fe4236;
+  color: azure;
+  border: solid azure 1px;
+  padding-bottom: 23px;
+}
+.buttonSearchNav:hover {
+  background-color: #0d6efd;
+}
+.buttonDrop{
+  border: 2px #fe4236 solid;
+  background-color: #fe4236 ;
+}
+
+.buttonDrop:hover{
+  background-color: #0d6efd ;
+}
+
 .buttonLogout{
   border: 2px #fe4236 solid;
   background-color: #fe4236 ;

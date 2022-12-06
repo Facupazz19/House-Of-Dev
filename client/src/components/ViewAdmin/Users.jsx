@@ -2,12 +2,14 @@ import React from "react";
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "../ViewAdmin/users.css"
 
-const Users = () => {
-  const [users, setUsers] = useState([]);
 
+const Users = () => {
+  const {id} = useParams()
+  const [users, setUsers] = useState([]);
+  
   useEffect(() => {
     axios
       .get("http://localhost:3001/api/users/users", { withCredentials: true })
@@ -24,7 +26,7 @@ const Users = () => {
             <div className="fw-bold nameMayus"> {users.name} {users.lastName} </div>
             {users.admin ? <div class="ms-2 me-auto ">User Admin</div> : <div class="ms-2 me-auto">User</div>  }
           </div>
-          <span className="badge rounded-pill deletedUser"> <Link className="deletedUser">Deleted User</Link> </span>
+          <span className="badge rounded-pill deletedUser"> <Link className="deletedUser" to={`/delete/${users.id}`}>Deleted User</Link> </span>
         </li>
         
       </ol>
