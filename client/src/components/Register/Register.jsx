@@ -2,16 +2,17 @@ import { React, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../Register/register.css";
+import useInput from "../../hooks/useInput";
 
 const Register = () => {
-  const [name, setName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [country, setCountry] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [phone, setPhone] = useState(0);
+  const name = useInput();
+  const lastName = useInput();
+  const country = useInput();
+  const city = useInput();
+  const state = useInput();
+  const phone = useInput();
+  const password = useInput();
+  const email = useInput();
 
   const navigate = useNavigate();
 
@@ -19,151 +20,97 @@ const Register = () => {
     e.preventDefault();
     axios
       .post("http://localhost:3001/api/users/register", {
-        name: name,
-        lastName: lastName,
-        email: email,
-        password: password,
-        country: country,
-        city: city,
-        state: state,
-        phone: phone,
+        name: name.value,
+        lastName: lastName.value,
+        email: email.value,
+        password: password.value,
+        country: country.value,
+        city: city.value,
+        state: state.value,
+        phone: phone.value,
       })
       .then((res) => res.data)
       .then(() => navigate("/login"))
       .catch((error) => console.log(error));
   };
 
-  const handleChangeName = (e) => {
-    setName(e.target.value);
-  };
-
-  const handleChangeLastName = (e) => {
-    setLastName(e.target.value);
-  };
-
-  const handleChangePassword = (e) => {
-    setPassword(e.target.value);
-  };
-  const handleChangeCountry = (e) => {
-    setCountry(e.target.value);
-  };
-
-  const handleChangeEmail = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handleChangeCity = (e) => {
-    setCity(e.target.value);
-  };
-
-  const handleChangeState = (e) => {
-    setState(e.target.value);
-  };
-
-  const handleChangePhone = (e) => {
-    setPhone(e.target.value);
-  };
-
   return (
     <form className="container row g-3 containerReg" onSubmit={handleSubmit}>
-      <label className="form-label">
-        LastName
-      </label>
+      <label className="form-label">LastName</label>
       <input
         type="text"
         className="form-control"
         id="inputLastName"
-        placeholder="Aguirre"
+        {...lastName}
         required
-        onChange={handleChangeLastName}
       />
 
-      <label className="form-label">
-        Name
-      </label>
+      <label className="form-label">Name</label>
       <input
-        type="tel"
+        type="text"
         className="form-control"
         id="inputName"
-        placeholder="Fabian"
+        {...name}
         required
-        onChange={handleChangeName}
       />
 
       <div className="col-md-6">
-        <label className="form-label">
-          Email
-        </label>
+        <label className="form-label">Email</label>
         <input
-          onChange={handleChangeEmail}
           type="email"
           className="form-control"
           placeholder="example@example.com"
+          {...email}
           required
         />
       </div>
       <div className="col-md-6">
-        <label  className="form-label">
-          Password
-        </label>
+        <label className="form-label">Password</label>
         <input
-          onChange={handleChangePassword}
           type="password"
           className="form-control"
           id="inputPassword4"
-          placeholder="Password"
+          {...password}
           required
         />
       </div>
       <div className="col-12">
-        <label className="form-label">
-          Phone
-        </label>
+        <label className="form-label">Phone</label>
         <input
           type="text"
           className="form-control"
           id="inputAddress"
-          placeholder="362434532"
           required
-          onChange={handleChangePhone}
+          {...phone}
         />
       </div>
       <div className="col-12">
-        <label className="form-label">
-          Country
-        </label>
+        <label className="form-label">Country</label>
         <input
-          onChange={handleChangeCountry}
           type="text"
           className="form-control"
           id="inputCountry"
-          placeholder="Argentina"
+          {...country}
           required
         />
       </div>
       <div className="col-md-6">
-        <label className="form-label">
-          City
-        </label>
+        <label className="form-label">City</label>
         <input
-          onChange={handleChangeCity}
           type="text"
           className="form-control"
           id="inputCity"
-          placeholder="Resistencia"
+          {...city}
           required
         />
       </div>
       <div className="col-md-4">
-        <label className="form-label">
-          State
-        </label>
+        <label className="form-label">State</label>
         <input
-          onChange={handleChangeState}
           type="text"
           className="form-control"
           id="inputState"
-          placeholder="Buenos Aires"
+          {...state}
           required
         />
       </div>

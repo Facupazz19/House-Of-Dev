@@ -1,14 +1,15 @@
 import { React, useState } from "react";
 import axios from "axios";
-import "../Login/Login.css"
+import "../Login/Login.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../store/user";
 import { Link } from "react-router-dom";
+import useInput from "../../hooks/useInput";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const password = useInput();
+  const email = useInput();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -28,17 +29,11 @@ const Login = () => {
       .catch((error) => console.log(error));
   };
 
-  const handleChangePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleChangeEmail = (e) => {
-    setEmail(e.target.value);
-  };
-
   return (
-
-    <form className="px-4 py-3 container loginContainer " onClick={handleSubmit}>
+    <form
+      className="px-4 py-3 container loginContainer "
+      onClick={handleSubmit}
+    >
       <div className="mb-3">
         <label className="form-label">Email</label>
         <input
@@ -57,7 +52,6 @@ const Login = () => {
           type="password"
           className="form-control"
           id="exampleDropdownFormPassword1"
-          placeholder="Password"
         />
       </div>
       <div className="mb-3">
@@ -79,7 +73,6 @@ const Login = () => {
         Forgot password?
       </a>
     </form>
-
   );
 };
 
