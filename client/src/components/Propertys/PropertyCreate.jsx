@@ -2,19 +2,21 @@ import React from "react";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useInput from "../../hooks/useInput";
 
 const PropertyCreate = () => {
-  const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("");
-  const [state, setState] = useState("");
-  const [country, setCountry] = useState("");
-  const [description, setDescription] = useState("");
-  const [available, setAvailable] = useState("");
-  const [environments, setEnvironments] = useState(0);
-  const [price, setPrice] = useState("");
-  const [city, setCity] = useState("");
-  const [image, setImage] = useState("");
   const navigate = useNavigate();
+
+  const title = useInput();
+  const category = useInput();
+  const country = useInput();
+  const city = useInput();
+  const state = useInput();
+  const price = useInput();
+  const environments = useInput();
+  const image = useInput();
+  const available = useInput();
+  const description = useInput();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,55 +24,22 @@ const PropertyCreate = () => {
       .post(
         "http://localhost:3001/api/property/create",
         {
-          title: title,
-          category: category,
-          state: state,
-          country: country,
-          description: description,
-          environments: environments,
-          price: price,
-          city: city,
-          available: available,
-          image: image,
+          title: title.value,
+          category: category.value,
+          state: state.value,
+          country: country.value,
+          description: description.value,
+          environments: environments.value,
+          price: price.value,
+          city: city.value,
+          available: available.value,
+          image: image.value,
         },
         { withCredentials: true }
       )
       .then((res) => res.data)
       .then(() => navigate("/home"))
       .catch((error) => console.log(error));
-  };
-
-  const handleChangeTitle = (e) => {
-    setTitle(e.target.value);
-  };
-
-  const handleChangeCategory = (e) => {
-    setCategory(e.target.value);
-  };
-
-  const handleChangeCountry = (e) => {
-    setCountry(e.target.value);
-  };
-  const handleChangeDescription = (e) => {
-    setDescription(e.target.value);
-  };
-  const handleChangeImage = (e) => {
-    setImage(e.target.value);
-  };
-  const handleChangePrice = (e) => {
-    setPrice(e.target.value);
-  };
-  const handleChangeEnvironments = (e) => {
-    setEnvironments(e.target.value);
-  };
-  const handleChangeState = (e) => {
-    setState(e.target.value);
-  };
-  const handleChangeCity = (e) => {
-    setCity(e.target.value);
-  };
-  const handleChangeAvailable = (e) => {
-    setAvailable(e.target.value);
   };
 
   return (
@@ -80,43 +49,43 @@ const PropertyCreate = () => {
         <form onSubmit={handleSubmit}>
           <label>
             Title
-            <input type="text" onChange={handleChangeTitle} required />
+            <input type="text" {...title} required />
           </label>
           <label>
             Description
-            <input type="text" onChange={handleChangeDescription} required />
+            <input type="text" {...description} required />
           </label>
           <label>
             Environments
-            <input type="number" onChange={handleChangeEnvironments} required />
+            <input type="number" {...environments} required />
           </label>
           <label>
             Category
-            <input type="text" onChange={handleChangeCategory} required />
+            <input type="text" {...category} required />
           </label>
           <label>
             Price
-            <input type="number" onChange={handleChangePrice} required />
+            <input type="number" {...price} required />
           </label>
           <label>
             Country
-            <input type="text" onChange={handleChangeCountry} required />
+            <input type="text" {...country} required />
           </label>
           <label>
             City
-            <input type="text" onChange={handleChangeCity} required />
+            <input type="text" {...city} required />
           </label>
           <label>
             State
-            <input type="text" onChange={handleChangeState} required />
+            <input type="text" {...state} required />
           </label>
           <label>
             Available
-            <input type="text" onChange={handleChangeAvailable} required />
+            <input type="text" {...available} required />
           </label>
           <label>
             Image
-            <input type="text" onChange={handleChangeImage} required />
+            <input type="text" {...image} required />
           </label>
           <button>Crear</button>
         </form>
