@@ -65,7 +65,7 @@ const Register = () => {
   };
 
   return (
-    <form className="container row g-3 containerReg" onClick={handleSubmit}>
+    <form className="container row g-3 containerReg" onSubmit={handleSubmit}>
       <label className="form-label">
         LastName
       </label>
@@ -99,6 +99,7 @@ const Register = () => {
           type="email"
           className="form-control"
           placeholder="example@example.com"
+          required
         />
       </div>
       <div className="col-md-6">
@@ -111,6 +112,7 @@ const Register = () => {
           className="form-control"
           id="inputPassword4"
           placeholder="Password"
+          required
         />
       </div>
       <div className="col-12">
@@ -136,6 +138,7 @@ const Register = () => {
           className="form-control"
           id="inputCountry"
           placeholder="Argentina"
+          required
         />
       </div>
       <div className="col-md-6">
@@ -148,6 +151,7 @@ const Register = () => {
           className="form-control"
           id="inputCity"
           placeholder="Resistencia"
+          required
         />
       </div>
       <div className="col-md-4">
@@ -160,6 +164,7 @@ const Register = () => {
           className="form-control"
           id="inputState"
           placeholder="Buenos Aires"
+          required
         />
       </div>
       <div className="col-12"></div>

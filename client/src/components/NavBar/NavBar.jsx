@@ -115,7 +115,11 @@ const NavBar = () => {
               </ul>
             </div>
           ) : (
-            <Link to={"/login"}>Login</Link>
+            <div className="btn-group">
+              <button className="btn btn-secondary buttonDrop">
+                {user.name ? <a>{user.name}</a> : <Link to={"/login"}>Login</Link> } 
+              </button>
+            </div>
           )}
         </a>
         <a className="user-name">

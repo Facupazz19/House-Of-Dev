@@ -80,43 +80,43 @@ const PropertyCreate = () => {
         <form onSubmit={handleSubmit}>
           <label>
             Title
-            <input type="text" onChange={handleChangeTitle} />
+            <input type="text" onChange={handleChangeTitle} required />
           </label>
           <label>
             Description
-            <input type="text" onChange={handleChangeDescription} />
+            <input type="text" onChange={handleChangeDescription} required />
           </label>
           <label>
             Environments
-            <input type="number" onChange={handleChangeEnvironments} />
+            <input type="number" onChange={handleChangeEnvironments} required />
           </label>
           <label>
             Category
-            <input type="text" onChange={handleChangeCategory} />
+            <input type="text" onChange={handleChangeCategory} required />
           </label>
           <label>
             Price
-            <input type="number" onChange={handleChangePrice} />
+            <input type="number" onChange={handleChangePrice} required />
           </label>
           <label>
             Country
-            <input type="text" onChange={handleChangeCountry} />
+            <input type="text" onChange={handleChangeCountry} required />
           </label>
           <label>
             City
-            <input type="text" onChange={handleChangeCity} />
+            <input type="text" onChange={handleChangeCity} required />
           </label>
           <label>
             State
-            <input type="text" onChange={handleChangeState} />
+            <input type="text" onChange={handleChangeState} required />
           </label>
           <label>
             Available
-            <input type="text" onChange={handleChangeAvailable} />
+            <input type="text" onChange={handleChangeAvailable} required />
           </label>
           <label>
             Image
-            <input type="text" onChange={handleChangeImage} />
+            <input type="text" onChange={handleChangeImage} required />
           </label>
           <button>Crear</button>
         </form>

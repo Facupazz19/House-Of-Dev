@@ -25,6 +25,14 @@ const Property = () => {
   <div className="card-body">
     <h5 className="card-title"> {property.title} </h5>
     <p className="card-text"> {property.description} </p>
+    <p className="card-text">Price: ${property.price} </p>
+    <p className="card-text">Disponible: {property.available} </p>
+    <p className="card-text">Environments: {property.environments} </p>
+    <p className="card-text">Country: {property.country} </p>
+    <p className="card-text">State: {property.state} </p>
+    <p className="card-text">City: {property.city} </p>
+    <p className="card-text">Category: {property.category} </p>
+    <a href="#" className="btn btn-primary">Reservar cita</a>
     <Link to={`/property/change/${property.id}`}><button>Editar Propiedad</button></Link>
     <Link to={`/property/delete/${property.id}`}><button>Eliminar Propiedad</button></Link>
   </div>
