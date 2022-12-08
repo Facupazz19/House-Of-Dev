@@ -1,13 +1,17 @@
 import { React, useState } from "react";
 import axios from "axios";
+import "../Login/Login.css";
 import { useNavigate } from "react-router-dom";
-
-
+import { useDispatch } from "react-redux";
+import { setUser } from "../../store/user";
+import { Link } from "react-router-dom";
+import useInput from "../../hooks/useInput";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const password = useInput();
+  const email = useInput();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,59 +24,55 @@ const Login = () => {
         },
         { withCredentials: true }
       )
-      .then((res) => console.log(res.data))
+      .then((res) => dispatch(setUser(res.data)))
       .then(() => navigate("/home"))
       .catch((error) => console.log(error));
   };
 
-  const handleChangePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleChangeEmail = (e) => {
-    setEmail(e.target.value);
-  };
-
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <li>
-          <label>Email:</label>
+    <form
+      className="px-4 py-3 container loginContainer "
+      onClick={handleSubmit}
+    >
+      <div className="mb-3">
+        <label className="form-label">Email</label>
+        <input
+          onChange={handleChangeEmail}
+          type="email"
+          className="form-control"
+          id="exampleDropdownFormEmail1"
+          placeholder="email@example.com"
+          required
+        />
+      </div>
+      <div className="mb-3">
+        <label className="form-label">Password</label>
+        <input
+          onChange={handleChangePassword}
+          type="password"
+          className="form-control"
+          id="exampleDropdownFormPassword1"
+        />
+      </div>
+      <div className="mb-3">
+        <div className="form-check">
           <input
-            id="email"
-            type="text"
-            email={email}
-            required
-            onChange={handleChangeEmail}
+            type="checkbox"
+            className="form-check-input"
+            id="dropdownCheck"
           />
-        </li>
-        <li>
-          <label>Password:</label>
-          <input
-            type="password"
-            id="password"
-            password={password}
-            required
-            onChange={handleChangePassword}
-          />
-        </li>
-        <button
-          style={{
-            color: "black",
-            borderColor: "black",
-            fontFamily: "Roboto",
-            fontWeight: "bold",
-            borderRadius: "200px",
-          }}
-          type="submit"
-          variant="text"
-          size="medium"
-        >
-          Login
-        </button>
-      </form>
-    </div>
+          <label className="form-check-label">Remember me</label>
+        </div>
+      </div>
+      <button type="submit" className="btn btn-primary">
+        Login
+      </button>
+      <div className="dropdown-divider"></div>
+      <Link to={"/register"}>New around here? Sign up</Link>
+      <a className="dropdown-item" href="#">
+        Forgot password?
+      </a>
+    </form>
   );
 };
 

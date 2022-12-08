@@ -1,8 +1,8 @@
 import React from "react";
 import "../Home/Home.css";
-import { Link} from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [property, setProperty] = useState([]);
@@ -14,16 +14,25 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="container flex-container">
+    <div className="row row-cols-1 row-cols-md-3 g-4">
       {property.map((property, i) => (
-        <div className="row row-cols-1 row-cols-md-3 g-4">
-          <div className="col">
-            <div className="card image">
-              <img src={property.image} className="card-img-top" alt="..." />
-              <div class="card-body">
-                <h5 class="card-title"> <Link to={`/property/change/${property.id}`}>{property.title}</Link> </h5>
-                <p class="card-text">{property.description}</p>
-              </div>
+        <div class="col">
+          <div class="card h-100">
+            <img
+              src={property.image}
+              className="card-img-top imageCard"
+              alt="..."
+            />
+            <div className="card-body">
+              <h5 className="card-title"> {property.title} </h5>
+              <p className="card-text">{property.description}</p>
+            </div>
+            <div className="card-footer">
+              <small className="text-muted">
+                <Link to={`/property/${property.id}`}>
+                  <button>Ver propiedad</button>
+                </Link>
+              </small>
             </div>
           </div>
         </div>
