@@ -15,12 +15,6 @@ const Home = () => {
       .then((res) => setProperty(res.data));
   }, []);
 
- const fav = () => {
-    axios
-      .get("http://localhost:3001/api/users/addfavorites")
-      .then((res) => setFavorites(res.data));
-  };
-
   return (
     <div className="row row-cols-1 row-cols-md-3 g-4">
       {property.map((property, i) => (
