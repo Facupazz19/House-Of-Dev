@@ -55,15 +55,6 @@ route.post("/login", (req, res) => {
   });
 });
 
-route.post("/addfavorites", (req, res) => {
-  const { email, property } = req.body;
-  Property.findOne({ where: { property: property.id } }).then((property) => {
-    User.findOne({ where: { email : email } }).then((user) => user.addFavorites(property));
-    res.status(201);
-  })
-  .catch(error => console.log(error))
-});
-
 route.get("/secret", validateAuth, (req, res) => {
   res.send(req.user);
 });

@@ -1,8 +1,9 @@
 const express = require("express");
 const route = express.Router();
-const Property = require("../models/Propertys");
+const  {Property} = require("../models/index");
 const { validateAdmin } = require("../middlewares/auth");
 const { Op } = require("sequelize");
+const {User} = require("../models/index")
 
 route.get("/", (req, res) => {
   Property.findAll().then((property) => {
@@ -22,11 +23,7 @@ route.get("/search/:category", (req, res) => {
   const search = category.toLowerCase();
   Property.findAll({
     where: {
-      [Op.or]: [
-        { category: search },
-        { city: search },
-        { country: search },
-      ],
+      [Op.or]: [{ category: search }, { city: search }, { country: search }],
     },
   }).then((search) => res.send(search));
 });
@@ -48,9 +45,9 @@ route.post("/create", validateAdmin, (req, res) => {
   const cityCreate = city.toLowerCase();
   const countryCreate = country.toLowerCase();
   Property.create({
-    category:categoryCreate,
-    city:cityCreate,
-    country:countryCreate,
+    category: categoryCreate,
+    city: cityCreate,
+    country: countryCreate,
     title,
     price,
     description,
@@ -61,6 +58,32 @@ route.post("/create", validateAdmin, (req, res) => {
   }).then((property) => {
     res.status(201).send(property);
   });
+});
+
+route.post("/addfavorites", (req, res) => {
+  const { email,id } = req.body;
+ /*  Property.findOneCreate({ where: { id: property } })
+    .then((property) => {
+      User.findOne({ where: { id: id } }).then((user) =>
+        user.addProperty_Favorites(property.id)
+      );
+      res.status(201);
+    })
+    .catch((error) => console.log(error)); */
+
+    User.findOrCreate({where:{email:email}})
+    .then((users) => {
+      console.log(users)
+      const userOne = users[0] 
+      Property.findOrCreate({where:{id:id}})
+      .then((property)=> { 
+        const propertyOne = property[0]
+       propertyOne.setFavorites(userOne)
+       res.status(201).send(propertyOne)
+      })
+     .catch(error => console.log(error))
+    })
+
 });
 
 route.put("/change/:id", validateAdmin, (req, res) => {

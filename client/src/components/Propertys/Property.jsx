@@ -5,6 +5,7 @@ import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setUser } from "../../store/user";
+import { addToFavs } from "../../store/user";
 
 const Property = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,11 @@ const Property = () => {
       .then((res) => setProperty(res.data))
       .catch((error) => console.log(error));
   }, []);
+
+
+ 
+
+
   return (
 <div className="container oneProperty">
   {user.admin ? <div className="card">
