@@ -1,27 +1,58 @@
 const express = require("express");
 const route = express.Router();
-const  {Property} = require("../models/index");
+const { Propertys, User } = require("../models/index");
 const { validateAdmin } = require("../middlewares/auth");
-const { Op } = require("sequelize");
-const {User} = require("../models/index")
+const { Op, where } = require("sequelize");
 
 route.get("/", (req, res) => {
-  Property.findAll().then((property) => {
+  Propertys.findAll().then((property) => {
     res.status(200).send(property);
+  });
+});
+
+//Trae todos los usuarios y aparte tras las relaciones que tenga con el modelo property
+
+/* route.get("/favorites", (req, res) => {
+  User.findAll({ include: { model: Propertys } }).then((users) => {
+    res.status(200).send(users);
+  });
+}); */
+
+route.delete("/delete/favorite/:id", (req, res) => {
+  console.log(req.params.id)
+  console.log(req.params.email)
+  User.findOne({ where: { email: req.user.email } }).then((user) => {
+    if (!user) return res.sendStatus(404);
+    return favorites
+      .destroy({ where: { id: req.params.id } })
+      .then(() => res.sendStatus(202))
+      .catch((err) => res.send(err));
   });
 });
 
 route.get("/:id", (req, res) => {
   const id = req.params.id;
-  Property.findOne({ where: { id } }).then((property) => {
+  Propertys.findOne({ where: { id } }).then((property) => {
     res.status(200).send(property);
+  });
+});
+
+route.post("/addFavorites", (req, res) => {
+  const { email, id } = req.body;
+  User.findOne({ where: { email: email } }).then((users) => {
+    Propertys.findByPk(id)
+      .then((property) => {
+        property.setUsers(users);
+        res.status(201).send(property);
+      })
+      .catch((error) => console.log(error));
   });
 });
 
 route.get("/search/:category", (req, res) => {
   const { category } = req.params;
   const search = category.toLowerCase();
-  Property.findAll({
+  Propertys.findAll({
     where: {
       [Op.or]: [{ category: search }, { city: search }, { country: search }],
     },
@@ -44,7 +75,7 @@ route.post("/create", validateAdmin, (req, res) => {
   const categoryCreate = category.toLowerCase();
   const cityCreate = city.toLowerCase();
   const countryCreate = country.toLowerCase();
-  Property.create({
+  Propertys.create({
     category: categoryCreate,
     city: cityCreate,
     country: countryCreate,
@@ -60,35 +91,9 @@ route.post("/create", validateAdmin, (req, res) => {
   });
 });
 
-route.post("/addfavorites", (req, res) => {
-  const { email,id } = req.body;
- /*  Property.findOneCreate({ where: { id: property } })
-    .then((property) => {
-      User.findOne({ where: { id: id } }).then((user) =>
-        user.addProperty_Favorites(property.id)
-      );
-      res.status(201);
-    })
-    .catch((error) => console.log(error)); */
-
-    User.findOrCreate({where:{email:email}})
-    .then((users) => {
-      console.log(users)
-      const userOne = users[0] 
-      Property.findOrCreate({where:{id:id}})
-      .then((property)=> { 
-        const propertyOne = property[0]
-       propertyOne.setFavorites(userOne)
-       res.status(201).send(propertyOne)
-      })
-     .catch(error => console.log(error))
-    })
-
-});
-
 route.put("/change/:id", validateAdmin, (req, res) => {
   const id = req.params.id;
-  Property.findByPk(id)
+  Propertys.findByPk(id)
     .then((property) => property.update(req.body))
     .then((propertyUpdated) => res.status(201).send(propertyUpdated))
     .catch((err) => res.status(400).send(err));
@@ -96,9 +101,8 @@ route.put("/change/:id", validateAdmin, (req, res) => {
 
 route.delete("/delete/:id", validateAdmin, (req, res) => {
   const id = req.params.id;
-  Property.destroy({ where: { id } })
+  Propertys.destroy({ where: { id } })
     .then(() => res.status(204).send(console.log("propiedad eliminada")))
     .catch((err) => res.status(400).send(err));
 });
-
 module.exports = route;

@@ -81,7 +81,7 @@ const NavBar = () => {
             <a className="nav-link buttonsNav">Renting</a>
             <a className="nav-link buttonsNav">About us</a>
             <a className="nav-link buttonsNav">Contact</a>
-            <a className="nav-link buttonsNav">My profile</a>
+            <a className="nav-link buttonsNav"> {/* <Link to={`/profile/${}`}></Link>  */} My profile</a>
             <a className="nav-link buttonsNav">Services</a>
           </div>
         </div>

@@ -33,7 +33,6 @@ const Register = () => {
       .then(() => navigate("/login"))
       .catch((error) => console.log(error));
   };
-
   return (
     <form className="container row g-3 containerReg" onSubmit={handleSubmit}>
       <label className="form-label">LastName</label>

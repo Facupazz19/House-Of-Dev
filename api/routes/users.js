@@ -1,9 +1,8 @@
 const express = require("express");
 const { generateToken } = require("../config/token");
 const route = express.Router();
-const User = require("../models/Users");
 const { validateAuth, validateAdmin } = require("../middlewares/auth");
-const Property = require("../models/Propertys");
+const {User,Propertys} = require("../models/index")
 
 route.get("/me", validateAuth, (req, res) => {
   res.send(req.user);
@@ -22,7 +21,7 @@ route.post("/logout", (req, res) => {
 
 route.get("/:id", (req, res) => {
   const id = req.params.id;
-  User.findOne({ where: { id } }).then((user) => {
+  User.findOne({where:{id}, include : Propertys}).then((user) => {
     res.status(200).send(user);
   });
 });

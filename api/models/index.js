@@ -1,8 +1,7 @@
 const User = require("./Users");
 const Propertys = require("./Propertys");
 
-Propertys.belongsTo(User, {
-  as: "favorites",
-});
+Propertys.belongsToMany(User, { through: "favorites" });
+User.belongsToMany(Propertys, { through: "favorites" });
 
-module.export = { User, Propertys };
+module.exports = { User, Propertys };
