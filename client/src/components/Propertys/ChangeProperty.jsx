@@ -42,8 +42,10 @@ const ChangeProperty = () => {
         { withCredentials: true }
       )
       .then((res) => setProperty(res.data))
-      .then(() => navigate("/home"));
+      .then(() => navigate("/"));
   };
+
+  console.log(property)
 
   return (
     <div>
@@ -52,7 +54,7 @@ const ChangeProperty = () => {
         <form onSubmit={handleSubmit}>
           <label>
             Title
-            <input type="text" {...title} />
+            <input value={property.title} type="text" {...title} />
           </label>
           <label>
             Description

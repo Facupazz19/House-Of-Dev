@@ -2,10 +2,14 @@ const express = require("express");
 const { generateToken } = require("../config/token");
 const route = express.Router();
 const { validateAuth, validateAdmin } = require("../middlewares/auth");
-const {User,Propertys} = require("../models/index")
+const { User, Propertys } = require("../models/index");
 
 route.get("/me", validateAuth, (req, res) => {
-  res.send(req.user);
+   User.findByPk(req.user.id, { include: Propertys }).then(
+    (user) => {
+      res.send(user);
+    }
+  );
 });
 
 route.get("/users", validateAdmin, (req, res) => {
@@ -21,7 +25,7 @@ route.post("/logout", (req, res) => {
 
 route.get("/:id", (req, res) => {
   const id = req.params.id;
-  User.findOne({where:{id}, include : Propertys}).then((user) => {
+  User.findOne({ where: { id } }).then((user) => {
     res.status(200).send(user);
   });
 });
@@ -42,6 +46,7 @@ route.post("/login", (req, res) => {
     user.validatePassword(password).then((isValid) => {
       if (!isValid) return res.sendStatus(401);
       const payload = {
+        id: user.id,
         email: user.email,
         name: user.name,
         lastName: user.lastName,

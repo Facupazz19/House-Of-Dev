@@ -1,13 +1,22 @@
 const express = require("express");
 const route = express.Router();
 const { Propertys, User } = require("../models/index");
-const { validateAdmin } = require("../middlewares/auth");
+const { validateAdmin, validateAuth } = require("../middlewares/auth");
 const { Op, where } = require("sequelize");
 
 route.get("/", (req, res) => {
   Propertys.findAll().then((property) => {
     res.status(200).send(property);
   });
+});
+
+route.post("/filter/price", (req, res) => {
+  const { min, max } = req.body;
+  Propertys.findAll({ where: { price: { [Op.between]: [min, max] } } })
+    .then((filter) => {
+      res.send(filter);
+    })
+    .catch((error) => console.log(error));
 });
 
 //Trae todos los usuarios y aparte tras las relaciones que tenga con el modelo property
@@ -18,18 +27,6 @@ route.get("/", (req, res) => {
   });
 }); */
 
-route.delete("/delete/favorite/:id", (req, res) => {
-  console.log(req.params.id)
-  console.log(req.params.email)
-  User.findOne({ where: { email: req.user.email } }).then((user) => {
-    if (!user) return res.sendStatus(404);
-    return favorites
-      .destroy({ where: { id: req.params.id } })
-      .then(() => res.sendStatus(202))
-      .catch((err) => res.send(err));
-  });
-});
-
 route.get("/:id", (req, res) => {
   const id = req.params.id;
   Propertys.findOne({ where: { id } }).then((property) => {
@@ -37,16 +34,33 @@ route.get("/:id", (req, res) => {
   });
 });
 
-route.post("/addFavorites", (req, res) => {
-  const { email, id } = req.body;
-  User.findOne({ where: { email: email } }).then((users) => {
+route.get("/filter/:environments", (req, res) => {
+  const { environments } = req.params;
+  Propertys.findAll({ where: { environments: environments } })
+    .then((filter) => {
+      res.send(filter);
+    })
+    .catch((error) => console.log(error));
+});
+
+route.post("/delete/favorites/:id", validateAuth, (req, res) => {
+  const { id } = req.params;
     Propertys.findByPk(id)
       .then((property) => {
-        property.setUsers(users);
-        res.status(201).send(property);
+        res.status(204).send(property);
+        property.removeUsers(req.user.id);
       })
       .catch((error) => console.log(error));
-  });
+});
+
+route.post("/addFavorites", validateAuth, (req, res) => {
+  const { id } = req.body;
+  Propertys.findByPk(id)
+    .then((property) => {
+      property.setUsers(req.user.id);
+      res.status(201).send(property);
+    })
+    .catch((error) => console.log(error));
 });
 
 route.get("/search/:category", (req, res) => {
@@ -105,4 +119,5 @@ route.delete("/delete/:id", validateAdmin, (req, res) => {
     .then(() => res.status(204).send(console.log("propiedad eliminada")))
     .catch((err) => res.status(400).send(err));
 });
+
 module.exports = route;

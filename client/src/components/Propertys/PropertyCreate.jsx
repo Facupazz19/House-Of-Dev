@@ -38,7 +38,7 @@ const PropertyCreate = () => {
         { withCredentials: true }
       )
       .then((res) => res.data)
-      .then(() => navigate("/home"))
+      .then(() => navigate("/"))
       .catch((error) => console.log(error));
   };
 

@@ -21,6 +21,7 @@ const NavBar = () => {
     axios
       .get("http://localhost:3001/api/users/me", { withCredentials: true })
       .then((res) => dispatch(setUser(res.data)))
+      
       .catch((error) => console.log(error));
   }, []);
 
@@ -33,14 +34,14 @@ const NavBar = () => {
         { withCredentials: true }
       )
       .then((res) => dispatch(userLogout(res.data)))
-      .then(() => navigate("/home"))
+      .then(() => navigate("/"))
       .catch((error) => console.log(error));
   };
 
   return (
     <nav className="navbar navbar-expand-lg bg-light fondoNavBar">
       <div className="container-fluid fondoNavBar">
-        <a className="navbar-brand" href="/home">
+        <a className="navbar-brand" href="/">
           <img className="card-navBar" src={logo} alt="logoHouseOfDev" />
         </a>
         <button
@@ -81,7 +82,7 @@ const NavBar = () => {
             <a className="nav-link buttonsNav">Renting</a>
             <a className="nav-link buttonsNav">About us</a>
             <a className="nav-link buttonsNav">Contact</a>
-            <a className="nav-link buttonsNav"> {/* <Link to={`/profile/${}`}></Link>  */} My profile</a>
+            <a className="nav-link buttonsNav" href="/profile">My profile</a>
             <a className="nav-link buttonsNav">Services</a>
           </div>
         </div>

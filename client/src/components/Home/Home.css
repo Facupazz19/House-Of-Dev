@@ -10,3 +10,15 @@
   display: flex;
   flex-wrap: wrap;
 }
+.input-filter {
+  display: flex;
+  justify-content: center;
+}
+.filter-price {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+.padding-button {
+  margin-left: 0.5rem;
+}

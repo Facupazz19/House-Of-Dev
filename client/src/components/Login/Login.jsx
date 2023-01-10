@@ -25,7 +25,8 @@ const Login = () => {
         { withCredentials: true }
       )
       .then((res) => dispatch(setUser(res.data)))
-      .then(() => navigate("/home"))
+      .then(() => navigate("/"))
+      .then(() => window.location.reload(false))
       .catch((error) => console.log(error));
   };
 

@@ -12,6 +12,7 @@ import DeleteProperty from "./components/Propertys/DeleteProperty";
 import Users from "./components/ViewAdmin/Users";
 import DeleteUser from "./components/ViewAdmin/DeleteUser";
 import Search from "./components/Propertys/Search";
+import Date from "./components/Appoinments/Date"
 
 
 const App = () => {
@@ -20,15 +21,16 @@ const App = () => {
     <>
     <NavBar />
       <Routes>
-      <Route path="/home" element={<Home />} />
+      <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/profile/:id" element={<Profile />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/property/create" element={<PropertyCreate />} />
         <Route path="/property/change/:id" element={<ChangeProperty />} />
         <Route path="/property/:id" element={<Property />} />
         <Route path="/property/delete/:id" element={<DeleteProperty />} />
         <Route path="/users" element={<Users/>} />
+        <Route path="/add/appointments/:id" element={<Date/>} />
         <Route path="/delete/:id" element={<DeleteUser/>} />
         <Route path="/search/:category" element={<Search/>} />
       </Routes>
