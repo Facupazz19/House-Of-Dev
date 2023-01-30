@@ -34,7 +34,7 @@ route.post("/register", (req, res) => {
   User.create(req.body).then((user) => {
     res.status(201).send(user);
   });
-});
+})
 
 route.post("/login", (req, res) => {
   const { email, password, admin } = req.body;
