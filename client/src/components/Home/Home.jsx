@@ -15,12 +15,14 @@ const Home = () => {
 
   const dispatch = useDispatch();
 
+  console.log(property)
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/api/property")
+      .get("http://localhost:3001/api/property/")
       .then((res) => setProperty(res.data));
   }, []);
+
 
   const handleAddFavorites = (id) => {
     axios
@@ -81,9 +83,9 @@ const Home = () => {
         </div>
       </form>
       <div className="container filter-price">
-      <h4>Filter by price:</h4>
-      <button className="padding-button" onClick={handleFilterPrice}> $1000-$2000 </button>
-      <button className="padding-button" onClick={handleFilterPrices}> $2000-$5000 </button>
+        <h4>Filter by price:</h4>
+        <button className="padding-button" onClick={handleFilterPrice}> $1000-$2000 </button>
+        <button className="padding-button" onClick={handleFilterPrices}> $2000-$5000 </button>
       </div>
       <div className="row row-cols-1 row-cols-md-3 g-4">
         {property.map((property, i) => (
