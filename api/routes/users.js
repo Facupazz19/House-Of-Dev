@@ -1,12 +1,15 @@
 const express = require("express");
 const { generateToken } = require("../config/token");
 const route = express.Router();
-const User = require("../models/Users");
-const { validateAuth,validateAdmin} = require('../middlewares/auth');
+const { validateAuth, validateAdmin } = require("../middlewares/auth");
+const { User, Propertys } = require("../models/index");
 
-
-route.get('/me',validateAuth, (req, res) => {
-  res.send(req.user);
+route.get("/me", validateAuth, (req, res) => {
+   User.findByPk(req.user.id, { include: Propertys }).then(
+    (user) => {
+      res.send(user);
+    }
+  );
 });
 
 route.get("/users", validateAdmin, (req, res) => {
@@ -15,14 +18,14 @@ route.get("/users", validateAdmin, (req, res) => {
   });
 });
 
-route.post('/logout', (req, res) => {
-  res.clearCookie('token');
+route.post("/logout", (req, res) => {
+  res.clearCookie("token");
   res.sendStatus(204);
 });
 
 route.get("/:id", (req, res) => {
-  const id = req.params.id
-  User.findOne({where : {id}}).then((user) => {
+  const id = req.params.id;
+  User.findOne({ where: { id } }).then((user) => {
     res.status(200).send(user);
   });
 });
@@ -31,10 +34,10 @@ route.post("/register", (req, res) => {
   User.create(req.body).then((user) => {
     res.status(201).send(user);
   });
-});
+})
 
 route.post("/login", (req, res) => {
-  const { email, password,admin } = req.body;
+  const { email, password, admin } = req.body;
 
   User.findOne({
     where: { email },
@@ -43,10 +46,11 @@ route.post("/login", (req, res) => {
     user.validatePassword(password).then((isValid) => {
       if (!isValid) return res.sendStatus(401);
       const payload = {
+        id: user.id,
         email: user.email,
         name: user.name,
         lastName: user.lastName,
-        admin: user.admin
+        admin: user.admin,
       };
       const token = generateToken(payload);
       res.cookie("token", token);
@@ -59,8 +63,8 @@ route.get("/secret", validateAuth, (req, res) => {
   res.send(req.user);
 });
 
-route.post('/logout', (req, res) => {
-  res.clearCookie('token');
+route.post("/logout", (req, res) => {
+  res.clearCookie("token");
   res.sendStatus(204);
 });
 
@@ -76,7 +80,5 @@ route.delete("/delete/:id", validateAdmin, (req, res) => {
     .then(() => res.status(204).send("user deleted"))
     .catch((err) => res.status(400).send(err));
 });
-
-
 
 module.exports = route;

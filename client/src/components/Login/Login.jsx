@@ -19,13 +19,14 @@ const Login = () => {
       .post(
         "http://localhost:3001/api/users/login",
         {
-          email: email,
-          password: password,
+          email: email.value,
+          password: password.value,
         },
         { withCredentials: true }
       )
       .then((res) => dispatch(setUser(res.data)))
-      .then(() => navigate("/home"))
+      .then(() => navigate("/"))
+      .then(() => window.location.reload(false))
       .catch((error) => console.log(error));
   };
 
@@ -37,21 +38,20 @@ const Login = () => {
       <div className="mb-3">
         <label className="form-label">Email</label>
         <input
-          onChange={handleChangeEmail}
           type="email"
           className="form-control"
           id="exampleDropdownFormEmail1"
           placeholder="email@example.com"
+          {...email}
           required
         />
       </div>
       <div className="mb-3">
         <label className="form-label">Password</label>
         <input
-          onChange={handleChangePassword}
           type="password"
           className="form-control"
-          id="exampleDropdownFormPassword1"
+          {...password}
         />
       </div>
       <div className="mb-3">
@@ -59,7 +59,6 @@ const Login = () => {
           <input
             type="checkbox"
             className="form-check-input"
-            id="dropdownCheck"
           />
           <label className="form-check-label">Remember me</label>
         </div>
